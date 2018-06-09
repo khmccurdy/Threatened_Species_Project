@@ -3,7 +3,6 @@ from geopy.geocoders import Nominatim
 geolocator = Nominatim()
 
 df = pd.read_csv("threatened_species.csv")
-print(df.head())
 co_file = open("county_coordinates.txt", "w")
 
 for row in df["Countries"]:
@@ -15,3 +14,4 @@ for row in df["Countries"]:
         co_file.write(location_str + "\n")
     except:
         print("Could not find Coordinate for:", row)
+        co_file.write("\n")
