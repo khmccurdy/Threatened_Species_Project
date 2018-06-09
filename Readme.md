@@ -11,7 +11,7 @@ A drop down list for looking at the differnet groups of endangeered animals and 
 
 dataset :   http://apiv3.iucnredlist.org/ 
 
-screenshots : https://github.com/SwatiGiri/Threatened_Species_Project/blob/master/Capture.PNG
+screenshots : ![A table](images/Capture.PNG)
 
 
 
@@ -25,6 +25,7 @@ screenshots : https://github.com/SwatiGiri/Threatened_Species_Project/blob/maste
 
 # A sketch of the final design 
 
+(from Google)
 ![This, but maybe a heatmap](images/example3.jpg)
 
 
