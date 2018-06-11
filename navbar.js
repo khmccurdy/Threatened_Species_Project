@@ -1,7 +1,9 @@
 // Hierarchy of menu items
 var menuStructure = {
     animals: ["mammals","fish","birds","plants"],
-
+    years: [2000,1012,111,3],
+    status: ["extinct","critical","endangered"],
+    other: ["scatter plot","year graph"],
 };
 // Scale for specific menu icons
 var iconScale = {
