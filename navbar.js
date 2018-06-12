@@ -33,11 +33,12 @@ var navHeight = parseInt($svg.style("height"));
 var $topButtons = $svg.select("#top-buttons");
 var $subButtons = $svg.select("#sub-buttons");
 
+var totalIcons = Object.keys(menuStructure).length;
+
 // Load top buttons
 loadMainButtons();
 
 function loadMainButtons(){
-    var totalIcons = Object.keys(menuStructure).length;
     // i used to calculate x positions
     var i = 0;
     // Define y position
@@ -108,3 +109,10 @@ function loadMainButtons(){
         i++;
     }
 }
+
+d3.select(window).on("resize", ()=>{
+    navWidth = parseInt($svg.style("width"));
+    $topButtons.selectAll("g").data(d3.range(totalIcons).map(i=>navWidth/(totalIcons+1)*(i+1)))
+        .attr("transform", d=>`translate(${d} 0)`)
+        .attr("default-transform", d=>`translate(${d} 0)`)
+})
