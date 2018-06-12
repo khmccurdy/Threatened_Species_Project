@@ -8,6 +8,11 @@ var menuStructure = {
 // Scale for specific menu icons
 var iconScale = {
     animals: .5,
+    years: .1,
+}
+
+var iconLink = {
+    years: 'clock',
 }
 
 var iconSize = 50;
@@ -56,8 +61,10 @@ function loadMainButtons(){
         if (!scale) scale=0.5;
 
         // Add actual icon graphic
+        var iconPath = iconLink[option]?`icons/${iconLink[option]}.svg#main`:`SVG_logo.svg#main`;
         $button.append("use")
-            .attr("href", `SVG_logo.svg#main`) // @Placeholder
+            // .attr("href", `SVG_logo.svg#main`) // @Placeholder
+            .attr("href", iconPath)
             // .attr("href", `icons/${option}.svg`)
             .attr("transform", `translate(${-iconSize/2} ${-iconSize/2}) scale(${scale})`)
 
