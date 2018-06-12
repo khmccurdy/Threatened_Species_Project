@@ -15,6 +15,12 @@ var iconLink = {
     years: 'clock',
 }
 
+// [normal color, hover color, use stroke]
+var colors = {
+    animals: ['green','yellow',false],
+    years: ['grey','black',true]
+}
+
 var iconSize = 50;
 var trDuration = 200;
 
@@ -45,16 +51,21 @@ function loadMainButtons(){
         // calculate x position so that icons are evenly spaced
         // @Volatile - menu Object may be unordered
         let xPos = navWidth/(totalIcons+1)*(i+1);
+        let baseColor = colors[option]?colors[option][0]:"grey";
+        let hoverColor = colors[option]?colors[option][1]:"black";
+        let hasStroke = colors[option]?colors[option][2]:false;
         // main button element
         var $button = $topButtons.append("g")
             .attr("id", `${option}-button`)
             .attr("transform", `translate(${xPos} 0)`)
-            .attr("fill", "grey");
+            .attr("fill", baseColor)
+            .attr("stroke", hasStroke?baseColor:"")
 
         // Dummy variables to store default transform and color options
         $button.attr("default-transform", $button.attr("transform"))
-            .attr("base-color", $button.attr("fill"))
-            .attr("hover-color", "black")
+            .attr("base-color", baseColor)
+            .attr("hover-color", hoverColor)
+            .attr("use-stroke", hasStroke?1:0)
 
         // Set scale, deafault 0.5
         let scale = iconScale[option];
@@ -81,7 +92,8 @@ function loadMainButtons(){
             $me.transition()
                 .duration(trDuration)
                 .attr("transform", $me.attr("default-transform")+" scale(1.2)")
-                .attr("fill", $me.attr("hover-color"))
+                .attr("fill",   $me.attr("hover-color"))
+                .attr("stroke", $me.attr("use-stroke")==1?$me.attr("hover-color"):"")
         })
         // Mouseout (scale back down, revert color)
         $button.on("mouseout", function(){
@@ -89,7 +101,8 @@ function loadMainButtons(){
             $me.transition()
                 .duration(trDuration)
                 .attr("transform", $me.attr("default-transform"))
-                .attr("fill", $me.attr("base-color"))
+                .attr("fill",   $me.attr("base-color"))
+                .attr("stroke", $me.attr("use-stroke")==1?$me.attr("base-color"):"")
         })
         // increment i for next icon's x
         i++;
