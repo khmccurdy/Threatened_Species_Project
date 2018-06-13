@@ -1,69 +1,224 @@
-// function createNode(element) {
-//     return document.createElement(element);
-// }
+FusionCharts.ready(function () {
+  var salesChart = new FusionCharts({
+      type: 'MSArea',
+      renderAt: 'chart-container',
+      width: '600',
+      height: '400',
+      dataFormat: 'json',
+      dataSource: {
+        "chart": {
+          "caption": "Number of Threatened Species  ",
+          "subcaption": "1996-2017",
+          "showvalues": "0",
+          "captionpadding": "20",
+          "formatnumberscale": "1",
+          "showanchors": "0",
+          "labeldisplay": "ROTATE",
+          "yaxisvaluespadding": "10",
+          "yaxismaxvalue": "10000",
+          "slantlabels": "1",
+          "animation": "1",
+          "paletteColors": "#b2d9f9,#f7c018,#94bf13,#ff9049,#069191",
+          "divlinedashlen": "2",
+          "divlinedashgap": "4",
+          "divlineAlpha": "60",
+          "drawCrossLine": "1",
+          "crossLineColor": "#0d0d0d",
+          "crossLineAlpha": "100",
+          "crossLineAnimation": "1",
+          "theme": "zune"
+        },
+        "categories": [{
+          "category": [{
+            "label": "1996/1998"
+          }, {
+            "label": "2000"
+          }, {
+            "label": "2002"
+          }, {
+            "label": "2003"
+          }, {
+            "label": "2004"
+          }, {
+            "label": "2006"
+          }, {
+            "label": "2007"
+          }, {
+            "label": "2008"
+          }, {
+            "label": "2009"
+          }, {
+            "label": "2010"
+          }, {
+            "label": "2011"
+          }, {
+            "label": "2012"
+          }, {
+            "label": "2013"
+          }, {
+            "label": "2014"
+          }, {
+            "label": "2015"
+          }, {
+            "label": "2016"
+          }, {
+            "label": "2017"
+          }]
+        }],
+        "dataset": [{
+            "seriesname": "Plants",
+            "data": [{
+              "value": "5328"
+            }, {
+              "value": "5611"
+            }, {
+              "value": "5714"
+            }, {
+              "value": "6774"
+            }, {
+              "value": "8321"
+            }, {
+              "value": "8390"
+            }, {
+              "value": "8448"
+            }, {
+              "value": "8457"
+            }, {
+              "value": "8500"
+            }, {
+              "value": "8724"
+            }, {
+              "value": "9156"
+            }, {
+              "value": "9390"
+            }, {
+              "value": "10065"
+            }, {
+              "value": "10584"
+            }, {
+              "value": "11233"
+            }, {
+              "value": "11643"
+            }, {
+              "value": "12505"
+            }]
+          },
+          {
+            "seriesname": "Vertebrates",
+            "data": [{
+              "value": "3314"
+            }, {
+              "value": "3507"
+            }, {
+              "value": "3521"
+            }, {
+              "value": "3524"
+            }, {
+              "value": "5188"
+            }, {
+              "value": "5622"
+            }, {
+              "value": "5742"
+            }, {
+              "value": "5966"
+            }, {
+              "value": "6143"
+            }, {
+              "value": "6714"
+            }, {
+              "value": "7108"
+            }, {
+              "value": "7250"
+            }, {
+              "value": "7390"
+            }, {
+              "value": "7678"
+            }, {
+              "value": "7781"
+            }, {
+              "value": "8160"
+            }, {
+              "value": "8374"
+            }]
+          }, {
+            "seriesname": "Invertebrates",
+            "data": [{
+              "value": "1891"
+            }, {
+              "value": "1928"
+            }, {
+              "value": "1932"
+            }, {
+              "value": "1959"
+            }, {
+              "value": "1992"
+            }, {
+              "value": "2102"
+            }, {
+              "value": "2109"
+            }, {
+              "value": "2496"
+            }, {
+              "value": "2639"
+            }, {
+              "value": "2904"
+            }, {
+              "value": "3297"
+            }, {
+              "value": "3570"
+            }, {
+              "value": "3882"
+            }, {
+              "value": "4140"
+            }, {
+              "value": "4201"
+            }, {
+              "value": "4470"
+            }, {
+              "value": "4893"
+            }]
+          }, {
+            "seriesname": "Fungi&Protists",
+            "data": [{
+              "value": "0"
+            }, {
+              "value": "0"
+            }, {
+              "value": "0"
+            }, {
+              "value": "2"
+            }, {
+              "value": "2"
+            }, {
+              "value": "3"
+            }, {
+              "value": "9"
+            }, {
+              "value": "9"
+            }, {
+              "value": "9"
+            }, {
+              "value": "9"
+            }, {
+              "value": "9"
+            }, {
+              "value": "9"
+            }, {
+              "value": "49"
+            }, {
+              "value": "11"
+            }, {
+              "value": "35"
+            }, {
+              "value": "34"
+            }, {
+              "value": "39"
+            }]
+          }
+        ]
 
-// function append(parent, el) {
-//   return parent.appendChild(el);
-// }
+      }
 
-
-// Get the list where we will place out data
-const ul1 = document.getElementById('endangered'); 
-// Get all the endangered species
-const url = 'http://apiv3.iucnredlist.org/api/v3/species/category/EN?token=9bb4facb6d23f48efbf424bb05c0c1ef1cf6f468393bc745d42179ac4aca5fee';
-fetch(url)
-  .then(data => {
-    // Here you get the data to modify as you please
-    data.json().then(res => console.log(res.result))
     })
-  .catch(error => {
-    console.log(error)
-  });   
-
-  const ul2 = document.getElementById('extinct'); 
-// Get all the extinct species
-const url2 = 'http://apiv3.iucnredlist.org/api/v3/species/category/EX?token=9bb4facb6d23f48efbf424bb05c0c1ef1cf6f468393bc745d42179ac4aca5fee';
-fetch(url2)
-  .then(data => {
-    // Here you get the data to modify as you please
-    data.json().then(res => console.log(res.result))
-    })
-  .catch(error => {
-    console.log(error)
-  });   
-
-  const ul3 = document.getElementById('countries'); 
-  // Get all the species in US
-  const url3 = 'http://apiv3.iucnredlist.org/api/v3/country/getspecies/US?token=9bb4facb6d23f48efbf424bb05c0c1ef1cf6f468393bc745d42179ac4aca5fee';
-  fetch(url3)
-    .then(data => {
-      // Here you get the data to modify as you please
-      data.json().then(res => console.log(res.result))
-      })
-    .catch(error => {
-      console.log(error)
-    });   
-
-
-
-
-
-
-//   fetch(url)
-//   .then((resp) => resp.json())
-//   .then(function(data) {
-//     let authors = data.results;
-//     return authors.map(function(author) {
-//       let li = createNode('li'),
-//           img = createNode('img'),
-//           span = createNode('span');
-//       img.src = author.picture.medium;
-//       span.innerHTML = `${author.name.first} ${author.name.last}`;
-//       append(li, img);
-//       append(li, span);
-//       append(ul, li);
-//     })
-//   })
-//   .catch(function(error) {
-//     console.log(error);
-//   });   
+    .render();
+});
