@@ -21,6 +21,7 @@ var colors = {
     years: ['grey','black',true]
 }
 
+
 var iconSize = 50;
 var trDuration = 200;
 
@@ -84,6 +85,9 @@ function loadMainButtons(){
             // if (typeof menuStructure[option]=="object"){
             //     $topButtons.transition().duration(trDuration)
             //         .attr("transform", `translate(0 ${yTop})`);
+            // } else {
+            //     d3.select(graphIDs[option]).style("visibility","visible")
+            //     d3.select(currently visible graph???).style("visibility","hidden")
             // }
         })
 
