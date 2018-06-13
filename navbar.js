@@ -82,13 +82,14 @@ function loadMainButtons(){
             .attr("transform", `translate(${-iconSize/2} ${-iconSize/2}) scale(${scale})`)
 
         $button.on("click", function() {
+            // d3.selectAll(".graph-div").style("visibility","hidden")
+            // d3.select(graphIDs[option]).style("visibility","visible")
+
             // if (typeof menuStructure[option]=="object"){
             //     $topButtons.transition().duration(trDuration)
             //         .attr("transform", `translate(0 ${yTop})`);
             // } else {
-            //     d3.select(graphIDs[option]).style("visibility","visible")
-            //     d3.select(currently visible graph???).style("visibility","hidden")
-            // }
+
         })
 
         // Mouseover (scale up slightly, change color)
