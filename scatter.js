@@ -1,6 +1,9 @@
 function cleanNum(numString){
     return numString.replace(",","").replace("..","0")
 }
+function log(n){
+    return Math.log(n+1);
+}
 
 d3.csv("data_cleanup/deforestation_cleanup.csv", (error, response)=>{
     if (error) console.warn(error);
@@ -16,8 +19,12 @@ d3.csv("data_cleanup/deforestation_cleanup.csv", (error, response)=>{
     var protectedLand90 = response.map(d=>+cleanNum(d.protectedLand90));
     var protectedLand14 = response.map(d=>+cleanNum(d.protectedLand14));
 
+    var protectedMarine14 = response.map(d=>+cleanNum(d.protectedMarine14));
+
     var deforestation90s = response.map(d=>+cleanNum(d.deforestation90s));
     var deforestation00s = response.map(d=>+cleanNum(d.deforestation00s));
+
+    var countries = response.map(d=>d.country)
 
     var trace1 = {
         x: protectedLand14,
@@ -60,16 +67,27 @@ d3.csv("data_cleanup/deforestation_cleanup.csv", (error, response)=>{
         mode:'markers'
     }
     var data = [trace2];
+    // var dataByOrder = [
+    //     {x:protectedLand14,y:mammals.map(log),mode:"markers"},
+    //     {x:protectedLand14,y:birds.map(log),mode:"markers"},
+    //     {x:protectedLand14,y:plants.map(log),mode:"markers"},
+    //     {x:protectedLand14,y:fish.map(log),mode:"markers"},
+    // ]
     var dataByOrder = [
-        {x:protectedLand14,y:mammals,mode:"markers"},
-        {x:protectedLand14,y:birds,mode:"markers"},
-        {x:protectedLand14,y:plants,mode:"markers"},
-        {x:protectedLand14,y:fish,mode:"markers"},
+        {y:mammals,name:"Mammals",marker:{color:'red'}},
+        {y:birds,name:"Birds",marker:{color:'orange'}},
+        {y:fish,name:"Fish",marker:{color:'blue'}},
+        {y:plants,name:"Plants",marker:{color:'green'}},
     ]
+    for (var i in dataByOrder){
+        dataByOrder[i].x=protectedLand14;
+        dataByOrder[i].text=countries;
+        dataByOrder[i].mode="markers";
+    }
 
     var layout = {
         xaxis: {title: data[0].xlabel},
-        yaxis: {title: data[0].ylabel},
+        yaxis: {title: data[0].ylabel, type:'log'},
     };
 
     Plotly.newPlot('scatterplot',dataByOrder,layout)
@@ -95,8 +113,17 @@ d3.csv("data_cleanup/deforestation_cleanup.csv", (error, response)=>{
         marker: trace5.marker,
         mode: 'markers',
     }
+    var trace7 = {
+        x: protectedLand14,
+        y: protectedMarine14,
+        z: totalSpecies,
+        type: 'scatter3d',
+        marker: trace5.marker,
+        mode: 'markers',
+    }
 
-    var data3d = [trace5, trace6];
+    // var data3d = [trace5, trace6];
+    var data3d =[trace7]
     var layout3d = {};
 
     Plotly.newPlot('3d',data3d,layout3d);
