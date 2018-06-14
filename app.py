@@ -35,7 +35,7 @@ def get_otu_ids():
     # converting table into something we can actually use  
     res = db.session.query(samples)
     # Final data
-    data = res.keys()
+    data = res
     #getting the data
     return jsonify(data)
 
