@@ -8,6 +8,11 @@ d3.csv("data_cleanup/deforestation_cleanup.csv", (error, response)=>{
     console.log(response);
     var totalSpecies = response.map(d=>+cleanNum(d.total));
 
+    var mammals = response.map(d=>+cleanNum(d.mammals));
+    var birds = response.map(d=>+cleanNum(d.birds));
+    var fish = response.map(d=>+cleanNum(d.fish));
+    var plants = response.map(d=>+cleanNum(d.plants));
+
     var protectedLand90 = response.map(d=>+cleanNum(d.protectedLand90));
     var protectedLand14 = response.map(d=>+cleanNum(d.protectedLand14));
 
@@ -55,14 +60,20 @@ d3.csv("data_cleanup/deforestation_cleanup.csv", (error, response)=>{
         mode:'markers'
     }
     var data = [trace2];
+    var dataByOrder = [
+        {x:protectedLand14,y:mammals,mode:"markers"},
+        {x:protectedLand14,y:birds,mode:"markers"},
+        {x:protectedLand14,y:plants,mode:"markers"},
+        {x:protectedLand14,y:fish,mode:"markers"},
+    ]
 
     var layout = {
         xaxis: {title: data[0].xlabel},
         yaxis: {title: data[0].ylabel},
     };
 
-    Plotly.newPlot('scatterplot',data,layout)
-    // Plotly.animate('scatterplot',{data:[trace1]})
+    Plotly.newPlot('scatterplot',dataByOrder,layout)
+    // Plotly.animate('scatterplot',{data:[trace1]},{transition:{duration:500}})
     console.log(protectedLand14);
 
     var trace5 = {
