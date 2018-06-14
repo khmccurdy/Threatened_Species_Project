@@ -33,7 +33,7 @@ def get_otu_ids():
     # getting the samples table     
     samples = metadata.tables['spec_table']
     # converting table into something we can actually use  
-    res = db.session.query(samples)
+    res = db.session.query(samples).all()
     # Final data
     data = res
     #getting the data
