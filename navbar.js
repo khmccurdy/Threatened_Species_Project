@@ -1,27 +1,32 @@
 // Hierarchy of menu items
-var menuStructure = {
-    animals: ["mammals","fish","birds","plants"],
-    years: [2000,1012,111,3],
-    status: ["extinct","critical","endangered"],
-    other: ["scatter plot","year graph"],
-};
-// Scale for specific menu icons
-var iconScale = {
-    animals: .5,
-    years: .1,
+
+var menu = {
+    animals: {
+        children:["mammals","fish","birds","plants"],
+        iconScale: .5,
+        //iconLink:
+        // [normal color, hover color, use stroke]
+        colors: ['green','yellow',false], 
+        graphID: "#map",
+        label: "By Class",
+    },
+    years: {
+        // children:[2000,1012,111,3],
+        iconScale: .1,
+        iconLink: 'clock',
+        colors: ['grey','black',true],
+        graphID: "#chart-container",
+        label: "Year-By-Year",
+    },
+    status: {
+        
+    },
+    protected: {
+        graphID: "", // the scatterplot
+        label: "Protected Land",
+    },
 }
-
-var iconLink = {
-    years: 'clock',
-}
-
-// [normal color, hover color, use stroke]
-var colors = {
-    animals: ['green','yellow',false],
-    years: ['grey','black',true]
-}
-
-
+// @Incomplete: structure object for animal groups?
 var iconSize = 50;
 var trDuration = 200;
 
@@ -34,14 +39,14 @@ var navHeight = parseInt($svg.style("height"));
 var $topButtons = $svg.select("#top-buttons");
 var $subButtons = $svg.select("#sub-buttons");
 
-var totalIcons = Object.keys(menuStructure).length;
+var totalIcons = Object.keys(menu).length;
 
 // Load top buttons
 loadMainButtons();
 
 function loadMainButtons(){
     // i used to calculate x positions
-    var i = 0;
+    var xIndex = 0;
     // Define y position
     let yMid = navHeight/2;
     let yTop = navHeight/3;
@@ -49,13 +54,18 @@ function loadMainButtons(){
 
     $topButtons.attr("transform", `translate(0 ${yMid})`)
     // Loop through top-level menu items
-    for (var option in menuStructure){
+    for (var option in menu){
+        let mo = menu[option];
         // calculate x position so that icons are evenly spaced
         // @Volatile - menu Object may be unordered
-        let xPos = navWidth/(totalIcons+1)*(i+1);
-        let baseColor = colors[option]?colors[option][0]:"grey";
-        let hoverColor = colors[option]?colors[option][1]:"black";
-        let hasStroke = colors[option]?colors[option][2]:false;
+        let xPos = navWidth/(totalIcons+1)*(xIndex+1);
+        let spacing = navWidth/(totalIcons+1)
+
+        let colors = mo.colors;
+        // set base and hover colors
+        let baseColor = colors?colors[0]:"grey";
+        let hoverColor = colors?colors[1]:"black";
+        let hasStroke = colors?colors[2]:false;
         // main button element
         var $button = $topButtons.append("g")
             .attr("id", `${option}-button`)
@@ -70,22 +80,35 @@ function loadMainButtons(){
             .attr("use-stroke", hasStroke?1:0)
 
         // Set scale, deafault 0.5
-        let scale = iconScale[option];
+        let scale = mo.iconScale;
         if (!scale) scale=0.5;
 
-        // Add actual icon graphic
-        var iconPath = iconLink[option]?`icons/${iconLink[option]}.svg#main`:`SVG_logo.svg#main`;
+        // Add icon graphic from external svg file
+        var iconPath = mo.iconLink?`icons/${mo.iconLink}.svg#main`:`SVG_logo.svg#main`;
         $button.append("use")
-            // .attr("href", `SVG_logo.svg#main`) // @Placeholder
             .attr("href", iconPath)
-            // .attr("href", `icons/${option}.svg`)
             .attr("transform", `translate(${-iconSize/2} ${-iconSize/2}) scale(${scale})`)
+        // Add text label below icon
+        $button.append("text")
+            .text(mo.label)
+            .attr("y", iconSize*0.8)
+            .attr("stroke-width", 0)
+            .attr("text-anchor", "middle")
+            .classed("menu-icon-text", true)
+        // Allows text wrapping on small screens, but more troublesome:
+        // $button.append("foreignObject")
+        //     .attr("width", spacing)
+        //     .attr("height", 80)
+        //     .attr("x", -spacing/2)
+        //     .attr("y", iconSize*0.6)
+        //     .classed("menu-icon-text", true)
+        //     .html(`<p style="margin:0px">${mo.label}</p>`)
 
         $button.on("click", function() {
             // d3.selectAll(".graph-div").style("visibility","hidden")
             // d3.select(graphIDs[option]).style("visibility","visible")
 
-            // if (typeof menuStructure[option]=="object"){
+            // if (mo.children){
             //     $topButtons.transition().duration(trDuration)
             //         .attr("transform", `translate(0 ${yTop})`);
             // } else {
@@ -97,7 +120,7 @@ function loadMainButtons(){
             let $me = d3.select(this)
             $me.transition()
                 .duration(trDuration)
-                .attr("transform", $me.attr("default-transform")+" scale(1.2)")
+                .attr("transform", $me.attr("default-transform")+" scale(1.1)")
                 .attr("fill",   $me.attr("hover-color"))
                 .attr("stroke", $me.attr("use-stroke")==1?$me.attr("hover-color"):"")
         })
@@ -111,7 +134,7 @@ function loadMainButtons(){
                 .attr("stroke", $me.attr("use-stroke")==1?$me.attr("base-color"):"")
         })
         // increment i for next icon's x
-        i++;
+        xIndex++;
     }
 }
 
