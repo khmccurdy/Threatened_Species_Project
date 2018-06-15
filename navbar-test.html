@@ -5,8 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <!-- D3 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
-    
+    <!-- Fusion Chart -->
+    <script type="text/javascript" src="https://static.fusioncharts.com/code/latest/fusioncharts.js"></script>
+    <script type="text/javascript" src="https://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.zune.js"></script>
+    <!-- Leaflet and heatmap extension -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+    <script type="text/javascript" src="leaflet-heat.js"></script>
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Plotly -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- Config vars -->
+    <script src="config.js"></script>
     <!-- <link href="style.css" rel="stylesheet"> -->
     <style>
         .menu-icon-text {
@@ -14,13 +27,20 @@
             font-size: 12pt;
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         }
+        #navbar{
+            background: #e0e0db;
+            /* box-shadow: 0px 5px rgba(0,0,0,0.3); */
+        }
+        #nav-svg{
+            background: #f9f9f4;
+        }
     </style>
     <link href="map-div.css" rel="stylesheet">
 </head>
 <body>
     <nav>
-        <div id="navbar" >
-            <svg width="100%" height=120>
+        <div id="navbar">
+            <svg width="100%" height="100px" id="nav-svg">
                 <g id="nav-buttons">
                     <g id="top-buttons">
                         <!-- top-level buttons go here -->
@@ -32,7 +52,21 @@
             </svg>
         </div>
     </nav>
-    <div id ="map" style="background-color: #eee;"></div>
     <script src="navbar.js"></script>
+    <!-- Heatmap -->
+    <div id ="map" class="graph-div"></div>
+    <script src="heatmap.js"></script>
+    <!-- Line graph -->
+    <div id="chart-container" class="graph-div">FusionCharts will render here</div>
+    <script src="static/index.js"></script>
+    <!-- Scatterplot -->
+    <div id ="scatterplot" class="graph-div" style="margin:auto"></div>
+    <!-- <div id ="3d"></div> -->
+    <script src="scatter.js"></script>
+    <script>
+        d3.selectAll(".graph-div").style("display","none")
+        d3.select("#map").style("display","block")
+        console.log(window.innerWidth)
+    </script>
 </body>
 </html>

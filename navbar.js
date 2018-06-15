@@ -2,13 +2,13 @@
 
 var menu = {
     animals: {
-        children:["mammals","fish","birds","plants"],
-        iconScale: .5,
-        //iconLink:
+        // children:["mammals","fish","birds","plants"],
+        iconScale: .083,
+        iconLink: "globe",
         // [normal color, hover color, use stroke]
-        colors: ['green','yellow',false], 
+        colors: ['#292','#070',false], 
         graphID: "#map",
-        label: "By Class",
+        label: "By Country",
     },
     years: {
         // children:[2000,1012,111,3],
@@ -18,17 +18,21 @@ var menu = {
         graphID: "#chart-container",
         label: "Year-By-Year",
     },
-    status: {
-        
-    },
     protected: {
+        iconScale: 0.5,
+        iconLink: "epa",
+        graphID: "#scatterplot",
+        label: "Protected Land"
+    },
+    summary: {
         graphID: "", // the scatterplot
-        label: "Protected Land",
+        label: "Summary",
     },
 }
 // @Incomplete: structure object for animal groups?
 var iconSize = 50;
 var trDuration = 200;
+var hoverScale = 1.08;
 
 // Select navbar svg element
 var $svg = d3.select("#navbar").select("svg");
@@ -48,9 +52,10 @@ function loadMainButtons(){
     // i used to calculate x positions
     var xIndex = 0;
     // Define y position
-    let yMid = navHeight/2;
-    let yTop = navHeight/3;
-    let yLow = 2*navHeight/3;
+    let yMid = navHeight * 0.4;
+    // let yMid = navHeight/2;
+    // let yTop = navHeight/3;
+    // let yLow = 2*navHeight/3;
 
     $topButtons.attr("transform", `translate(0 ${yMid})`)
     // Loop through top-level menu items
@@ -105,8 +110,8 @@ function loadMainButtons(){
         //     .html(`<p style="margin:0px">${mo.label}</p>`)
 
         $button.on("click", function() {
-            // d3.selectAll(".graph-div").style("visibility","hidden")
-            // d3.select(graphIDs[option]).style("visibility","visible")
+            d3.selectAll(".graph-div").style("display","none")
+            d3.select(mo.graphID).style("display","block")
 
             // if (mo.children){
             //     $topButtons.transition().duration(trDuration)
@@ -120,7 +125,7 @@ function loadMainButtons(){
             let $me = d3.select(this)
             $me.transition()
                 .duration(trDuration)
-                .attr("transform", $me.attr("default-transform")+" scale(1.1)")
+                .attr("transform", $me.attr("default-transform")+` scale(${hoverScale})`)
                 .attr("fill",   $me.attr("hover-color"))
                 .attr("stroke", $me.attr("use-stroke")==1?$me.attr("hover-color"):"")
         })

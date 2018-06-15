@@ -86,6 +86,7 @@ d3.csv("data_cleanup/deforestation_cleanup.csv", (error, response)=>{
     }
 
     var layout = {
+        width: window.innerWidth,
         xaxis: {title: data[0].xlabel},
         yaxis: {title: data[0].ylabel, type:'log'},
     };
