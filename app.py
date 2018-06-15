@@ -36,6 +36,8 @@ def get_otu_ids():
     res = db.session.query(samples).all()
     # Final data
     data = res
+    # It is possible to get the headings using VVV
+    # print(res[0].keys())
     #getting the data
     return jsonify(data[0 :])
 
