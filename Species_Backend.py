@@ -28,7 +28,7 @@ class Threatened_Species(Base):
 if __name__ == "__main__":
 
     #Create the database
-    engine = create_engine('sqlite:///species.db')
+    engine = create_engine('sqlite:///threatened_species.db')
     Base.metadata.create_all(engine)
 
     #Create the session
