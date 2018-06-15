@@ -48,8 +48,9 @@
             var latitudeArray = heatArray.map(d => d[0]);
             var longitudeArray = heatArray.map(d => d[1]);
 
-            data.forEach(function (d) {
-                d.total = +d.total * 3000;
+            data.forEach(function (d,i) {
+                //d.total = +d.total * 3000;
+                heatArray[i].push(+d.total)
             });
             console.log(data[0]);
 
