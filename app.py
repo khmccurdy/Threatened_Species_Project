@@ -31,7 +31,7 @@ def get_otu_ids():
     metadata = MetaData()
     metadata.reflect(bind=db.engine)
     # getting the samples table     
-    samples = metadata.tables['spec_table']
+    samples = metadata.tables['Threatened_Species']
     # converting table into something we can actually use  
     res = db.session.query(samples).all()
     # Final data
