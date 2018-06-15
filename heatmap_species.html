@@ -10,61 +10,13 @@
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="leaflet-heat.js"></script>
-
+    <link rel="stylesheet" href="map-div.css"/>
+    <script src="config.js"></script>
 </head>
 
 <body>
-
     <div id="map"></div>
-
-    <style>
-        body {
-            padding: 0px;
-            margin: 0px;
-        }
-
-        #map,
-        body,
-        html {
-            height: 100%;
-        }
-    </style>
-
-    <script type="text/javascript">
-
-        var mapbox = 'https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZHlsYnVyZ2VyIiwiYSI6ImNqaHNkZXpyYTAxdDAzcXJ6dzA3NHR5dXMifQ.oZt5CGSYffy4dZqIFSQciQ'
-
-        var myMap = L.map('map', {
-            center: [37.7749, -122.4194],
-            zoom: 3
-        });
-
-        L.tileLayer(mapbox).addTo(myMap);
-
-
-        d3.csv("/threatened_species.csv", function (data) {
-
-            var heatArray = data.map(d => d["Coordinates"].split(",").map(d => +d));
-            var latitudeArray = heatArray.map(d => d[0]);
-            var longitudeArray = heatArray.map(d => d[1]);
-
-            data.forEach(function (d,i) {
-                //d.total = +d.total * 3000;
-                heatArray[i].push(+d.total)
-            });
-            console.log(data[0]);
-
-            var heat = L.heatLayer(heatArray, {
-            radius: 10,
-            blur: 10
-            
-        }).addTo(myMap)
-        });
-
-       
-
-    </script>
-
+    <script src="heatmap.js"></script>
 </body>
 
 </html>
