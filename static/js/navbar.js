@@ -151,4 +151,5 @@ d3.select(window).on("resize", ()=>{
     $topButtons.selectAll("g").data(d3.range(totalIcons).map(i=>navWidth/(totalIcons+1)*(i+1)))
         .attr("transform", d=>`translate(${d} 0)`)
         .attr("default-transform", d=>`translate(${d} 0)`)
+    Plotly.relayout("scatterplot",{width: window.innerWidth*0.98})
 })
