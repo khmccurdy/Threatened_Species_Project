@@ -25,6 +25,10 @@ db = SQLAlchemy(app)
 def home():
     return render_template("index.html")
 
+@app.route("/heatmap")
+def heatmap():
+    return render_template("heatmap.html")
+
 @app.route("/threatened_species")
 def get_otu_ids():
     # defining metatdata
