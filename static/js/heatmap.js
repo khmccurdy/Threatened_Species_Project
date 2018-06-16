@@ -55,17 +55,16 @@ function plotPoints(data){
 
 
       var heat = L.heatLayer(heatArray, {
-              radius: 15,
+              radius: 25,
               blur: 15
           }
       ).addTo(myMap);
 
-
-
-
       for (var i = 0; i < heatArray.length; i++){
-        L.marker([latitudeArray[i], longitudeArray[i]]).bindPopup("<h3>Country : " + countryArray[i] + "</h3>" + "<strong>Total: " + "</strong>" + "<strong>" + totalArray[i] + "</strong>").addTo(myMap);
+        var marker = L.marker([latitudeArray[i], longitudeArray[i]]).bindPopup("<h3>Country : " + countryArray[i] + "</h3>" + "<strong>Total: " + "</strong>" + "<strong>" + totalArray[i] + "</strong>");
+        var icon = marker.options.icon;
+        icon.options.iconSize = [12, 20];
+        marker.setIcon(icon).addTo(myMap);
         }
-
 
 }
