@@ -64,7 +64,7 @@ function plotPoints(data){
 
 
       for (var i = 0; i < heatArray.length; i++){
-        L.marker([latitudeArray[i], longitudeArray[i]]).bindPopup("<h3>Country : " + countryArray[i] + "</h3>" + "<strong>Total: </strong>" + totalArray[i]).openPopup().addTo(myMap);
+        L.marker([latitudeArray[i], longitudeArray[i]]).bindPopup("<h3>Country : " + countryArray[i] + "</h3>" + "<strong>Total: " + "</strong>" + "<strong>" + totalArray[i] + "</strong>").addTo(myMap);
         }
 
 
