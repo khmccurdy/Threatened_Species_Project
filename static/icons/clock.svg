@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="main" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="-100 -100 200 200">
-  <circle cx="0" cy="0" r="250" fill="rgba(255,255,255,0)"/>
+  <circle cx="0" cy="0" r="120" fill="#0000" stroke="#0000"/>
   <defs>
     <circle cx="0" cy="87" r="2.2" fill="black" id="minMarker"/>
-	<line x1="0" y1="95" x2="0" y2="78" stroke-width="3.8" stroke="" id="hourMarker"/>
+	  <line x1="0" y1="95" x2="0" y2="78" stroke-width="3.8" stroke="" id="hourMarker"/>
   </defs>
   <g id="markerSet">
     <use xlink:href="#hourMarker"/>
