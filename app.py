@@ -26,6 +26,10 @@ def home():
     return render_template("navbar-test.html")
     # return render_template("index.html")
 
+@app.route("/fusionmap")
+def scatterplot():
+    return render_template("fusionmap.html")
+
 @app.route("/heatmap")
 def heatmap():
     return render_template("heatmap.html")
