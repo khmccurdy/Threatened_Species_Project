@@ -38,7 +38,9 @@
         .xLabelBtn {
             font-size: 10pt;
         }
-       
+        .article{
+            padding: 30pt;
+        }
     </style>
     <script>
         const static = "{{ url_for('static',filename='') }}"
@@ -87,5 +89,8 @@
         d3.select("#map").style("display","block")
         console.log(window.innerWidth)
     </script>
+    <div id="summary" class="graph-div article">
+        <p>Good mornin fine people!</p>
+    </div>
 </body>
 </html>

@@ -27,7 +27,7 @@ var menu = {
         label: "Protected Land"
     },
     summary: {
-        graphID: "", 
+        graphID: "#summary", 
         colors: [colorPalette.orange,colorPalette.dark_orange,false],
         label: "Summary",
     },
