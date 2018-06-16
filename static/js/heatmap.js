@@ -1,6 +1,6 @@
 //
 // Running it for the first time can take a little bit of time
-// becuase of overhead from alchemy 
+// becuase of overhead from alchemy
 // but over time ( 1 -2 mins ) it is not longer and issues
 // and fetches are almost instant
 //
@@ -40,19 +40,32 @@ L.tileLayer(mapbox).addTo(myMap);
 
 function plotPoints(data){
   console.log("plotPoints called");
+  var countryArray = data.map(country => country["Countries"]);
+  var totalArray = data.map(total => total["Total"]);
   var heatArray = data.map(d => d["Coordinates"].split(",").map(d => +d));
-      var latitudeArray = heatArray.map(d => d[0]);
-      var longitudeArray = heatArray.map(d => d[1]);
-  
+  var latitudeArray = heatArray.map(d => d[0]);
+  var longitudeArray = heatArray.map(d => d[1]);
+
       data.forEach(function (d,i) {
           heatArray[i].push(+d.Total*heatMultiplier)
+
       });
-  
+
       console.log(data[0]);
-  
+
+
       var heat = L.heatLayer(heatArray, {
               radius: 15,
               blur: 15
           }
-      ).addTo(myMap)
+      ).addTo(myMap);
+
+
+
+
+      for (var i = 0; i < heatArray.length; i++){
+        L.marker([latitudeArray[i], longitudeArray[i]]).bindPopup("<h3>Country : " + countryArray[i] + "</h3>" + "<strong>Total: </strong>" + totalArray[i]).openPopup().addTo(myMap);
+        }
+
+
 }
