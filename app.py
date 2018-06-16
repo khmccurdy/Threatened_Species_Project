@@ -27,7 +27,7 @@ def home():
     # return render_template("index.html")
 
 @app.route("/fusionmap")
-def scatterplot():
+def fusionmap():
     return render_template("fusionmap.html")
 
 @app.route("/heatmap")
