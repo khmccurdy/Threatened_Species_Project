@@ -1,9 +1,9 @@
 function cleanNum(numString){
     return numString.replace(",","").replace("..","0")
 }
-function log(n){
-    return Math.log(n+1);
-}
+// function log(n){
+//     return Math.log(n+1);
+// }
 
 d3.csv("static/data/deforestation_cleanup.csv", (error, response)=>{
     if (error) console.warn(error);
@@ -15,10 +15,12 @@ d3.csv("static/data/deforestation_cleanup.csv", (error, response)=>{
     var birds = response.map(d=>+cleanNum(d.birds));
     var fish = response.map(d=>+cleanNum(d.fish));
     var plants = response.map(d=>+cleanNum(d.plants));
+    var total = response.map(d=>+cleanNum(d.total));
 
     var protectedLand90 = response.map(d=>+cleanNum(d.protectedLand90));
     var protectedLand14 = response.map(d=>+cleanNum(d.protectedLand14));
 
+    var protectedMarine90 = response.map(d=>+cleanNum(d.protectedMarine90));
     var protectedMarine14 = response.map(d=>+cleanNum(d.protectedMarine14));
 
     var deforestation90s = response.map(d=>+cleanNum(d.deforestation90s));
@@ -26,47 +28,47 @@ d3.csv("static/data/deforestation_cleanup.csv", (error, response)=>{
 
     var countries = response.map(d=>d.country)
 
-    var trace1 = {
-        x: protectedLand14,
-        y: totalSpecies,
-        xlabel: "Protected Land (2014)",
-        ylabel: "Total Threatened Species (2016)",
-        mode:'markers'
-    }
+    // var trace1 = {
+    //     x: protectedLand14,
+    //     y: totalSpecies,
+    //     xlabel: "Protected Land (2014)",
+    //     ylabel: "Total Threatened Species (2016)",
+    //     mode:'markers'
+    // }
 
-    var trace2 = {
-        x: protectedLand90,
-        y: totalSpecies,
-        xlabel: "Protected Land (1990)",
-        ylabel: "Total Threatened Species (2016)",
-        mode:'markers'
-    }
+    // var trace2 = {
+    //     x: protectedLand90,
+    //     y: totalSpecies,
+    //     xlabel: "Protected Land (1990)",
+    //     ylabel: "Total Threatened Species (2016)",
+    //     mode:'markers'
+    // }
 
-    var trace3 = {
-        x: deforestation90s,
-        y: deforestation00s,
-        xlabel: "Deforestation ('90-'00)",
-        ylabel: "Deforestation ('00-'15)",
-        marker:{
-            color: totalSpecies,
-            colorscale: [['0','#eeb'],['1','#300']]
-        },
-        mode:'markers'
-    }
+    // var trace3 = {
+    //     x: deforestation90s,
+    //     y: deforestation00s,
+    //     xlabel: "Deforestation ('90-'00)",
+    //     ylabel: "Deforestation ('00-'15)",
+    //     marker:{
+    //         color: totalSpecies,
+    //         colorscale: [['0','#eeb'],['1','#300']]
+    //     },
+    //     mode:'markers'
+    // }
 
-    var trace4 = {
-        x: protectedLand90,
-        y: protectedLand14,
-        xlabel: "Protected Land (1990)",
-        ylabel: "Protected Land (2014)",
-        marker:{
-            color: totalSpecies,
-            colorscale: [['0','#eeb'],['1','#300']]
-        },
+    // var trace4 = {
+    //     x: protectedLand90,
+    //     y: protectedLand14,
+    //     xlabel: "Protected Land (1990)",
+    //     ylabel: "Protected Land (2014)",
+    //     marker:{
+    //         color: totalSpecies,
+    //         colorscale: [['0','#eeb'],['1','#300']]
+    //     },
         
-        mode:'markers'
-    }
-    var data = [trace2];
+    //     mode:'markers'
+    // }
+    // var data = [trace2];
     // var dataByOrder = [
     //     {x:protectedLand14,y:mammals.map(log),mode:"markers"},
     //     {x:protectedLand14,y:birds.map(log),mode:"markers"},
@@ -74,10 +76,11 @@ d3.csv("static/data/deforestation_cleanup.csv", (error, response)=>{
     //     {x:protectedLand14,y:fish.map(log),mode:"markers"},
     // ]
     var dataByOrder = [
-        {y:mammals,name:"Mammals",marker:{color:'red'}},
-        {y:birds,name:"Birds",marker:{color:'orange'}},
-        {y:fish,name:"Fish",marker:{color:'blue'}},
-        {y:plants,name:"Plants",marker:{color:'green'}},
+        {y:mammals,name:"Mammals",marker:{color:colorPalette.red}},
+        {y:birds,name:"Birds",marker:{color:colorPalette.orange}},
+        {y:fish,name:"Fish",marker:{color:colorPalette.blue}},
+        {y:plants,name:"Plants",marker:{color:colorPalette.green}},
+        {y:total,name:"Total",marker:{color:'rgba(0,0,0,.4)'}},
     ]
     for (var i in dataByOrder){
         dataByOrder[i].x=protectedLand14;
@@ -86,47 +89,85 @@ d3.csv("static/data/deforestation_cleanup.csv", (error, response)=>{
     }
 
     var layout = {
-        width: window.innerWidth,
-        xaxis: {title: data[0].xlabel},
-        yaxis: {title: data[0].ylabel, type:'log'},
+        width: window.innerWidth*0.98,
+        height: 500,
+        // xaxis: {title: "Protected Land (%)"},
+        yaxis: {title: "Threatened Species (2016)", type:'log'},
     };
 
     Plotly.newPlot('scatterplot',dataByOrder,layout)
     // Plotly.animate('scatterplot',{data:[trace1]},{transition:{duration:500}})
-    console.log(protectedLand14);
 
-    var trace5 = {
-        x: protectedLand90,
-        y: deforestation90s,
-        z: totalSpecies,
-        marker:{
-            size: 5,
-            opacity: 0.5,
-        },
-        type: 'scatter3d',
-        mode: 'markers',
-    }
-    var trace6 = {
-        x: protectedLand14,
-        y: deforestation00s,
-        z: totalSpecies,
-        type: 'scatter3d',
-        marker: trace5.marker,
-        mode: 'markers',
-    }
-    var trace7 = {
-        x: protectedLand14,
-        y: protectedMarine14,
-        z: totalSpecies,
-        type: 'scatter3d',
-        marker: trace5.marker,
-        mode: 'markers',
-    }
+    d3.select('#scatterplot').append("p").text("hi")
+    // d3.select('#scatterplot svg').append("circle").attr("cx","45%").attr("cy",layout.height-50).attr("r",50)
+    const textNormal = "rgba(0,0,0,.5)";
+    const textHover = "black"
+    d3.select('#scatterplot svg').selectAll(".xLabelBtn")
+        .data([
+            ["Protected Land (%)",0],
+            ["Protected Ocean (%)",0],
+            ["Annual Deforestation (%)",0],
+            ["2014",1],
+            ["1990",1],
+        ])
+        .enter()
+        .append("text")
+        .classed("xLabelBtn",true)
+        .attr("x",d=>d[1]?"50%":"45%")
+        .attr("y",(d,i)=>layout.height-50+i%3*15)
+        .attr("text-anchor",d=>d[1]?"start":"end")
+        .text(d=>d[0])
+        .attr("selected",0)
+        .attr('fill',textNormal)
+        .on("mouseover",function(){
+            d3.select(this).transition().duration(200).attr('fill',textHover)
+        })
+        .on("mouseout",function(){
+            if (d3.select(this).attr("selected")==0){
+                d3.select(this).transition().duration(200).attr('fill',textNormal)
+            }
+        })
+        .on("click", function(){
+            d3.selectAll('#scatterplot xLabelBtn').attr("selected",0)
+            d3.select(this).attr("selected",1)
+        })
+        // .attr()
+    // Plotly.animate('scatterplot',{data:[{x:protectedLand90}],layout})
 
-    // var data3d = [trace5, trace6];
-    var data3d =[trace7]
-    var layout3d = {};
+    // console.log(protectedLand14);
 
-    Plotly.newPlot('3d',data3d,layout3d);
+    // var trace5 = {
+    //     x: protectedLand90,
+    //     y: deforestation90s,
+    //     z: totalSpecies,
+    //     marker:{
+    //         size: 5,
+    //         opacity: 0.5,
+    //     },
+    //     type: 'scatter3d',
+    //     mode: 'markers',
+    // }
+    // var trace6 = {
+    //     x: protectedLand14,
+    //     y: deforestation00s,
+    //     z: totalSpecies,
+    //     type: 'scatter3d',
+    //     marker: trace5.marker,
+    //     mode: 'markers',
+    // }
+    // var trace7 = {
+    //     x: protectedLand14,
+    //     y: protectedMarine14,
+    //     z: totalSpecies,
+    //     type: 'scatter3d',
+    //     marker: trace5.marker,
+    //     mode: 'markers',
+    // }
+
+    // // var data3d = [trace5, trace6];
+    // var data3d =[trace7]
+    // var layout3d = {};
+
+    // Plotly.newPlot('3d',data3d,layout3d);
     // Plotly.animate('3d',{data:[trace6]},);
 })

@@ -34,8 +34,25 @@
         #nav-svg{
             background: #f9f9f4;
         }
+        .xLabelBtn {
+            font-size: 10pt;
+        }
+       
     </style>
-    <script>const static = "{{ url_for('static',filename='') }}"</script>
+    <script>
+        const static = "{{ url_for('static',filename='') }}"
+        const colorPalette = {
+            red:'#ff9049',
+            orange:'#f7c018',
+            blue:'#98c9f0',
+            green:'#94bf13',
+            
+            dark_red:'#e66e24',
+            dark_orange:'#e2ab05',
+            dark_blue:'#5da2db',
+            dark_green:'#6fb104',
+        }
+    </script>
     <link href="static/css/map-div.css" rel="stylesheet">
 </head>
 <body>
