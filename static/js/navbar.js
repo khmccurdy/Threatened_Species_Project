@@ -6,26 +6,29 @@ var menu = {
         iconScale: .083,
         iconLink: "globe",
         // [normal color, hover color, use stroke]
-        colors: ['#292','#070',false], 
+        // colors: ['#292','#070',false], 
+        colors: [colorPalette.blue,colorPalette.dark_blue,false],
         graphID: "#map",
-        label: "By Country",
+        label: "Heatmap",
     },
     years: {
         // children:[2000,1012,111,3],
         iconScale: .1,
         iconLink: 'clock',
-        colors: ['grey','black',true],
+        colors: [colorPalette.red,colorPalette.dark_red,true],
         graphID: "#chart-container",
         label: "Year-By-Year",
     },
     protected: {
         iconScale: 0.5,
         iconLink: "epa",
+        colors: [colorPalette.green,colorPalette.dark_green,false],
         graphID: "#scatterplot",
         label: "Protected Land"
     },
     summary: {
-        graphID: "", // the scatterplot
+        graphID: "", 
+        colors: [colorPalette.orange,colorPalette.dark_orange,false],
         label: "Summary",
     },
 }
