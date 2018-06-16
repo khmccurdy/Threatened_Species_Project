@@ -5,7 +5,7 @@ function log(n){
     return Math.log(n+1);
 }
 
-d3.csv("data_cleanup/deforestation_cleanup.csv", (error, response)=>{
+d3.csv("static/data/deforestation_cleanup.csv", (error, response)=>{
     if (error) console.warn(error);
 
     console.log(response);

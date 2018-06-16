@@ -29,6 +29,10 @@ def home():
 def heatmap():
     return render_template("heatmap.html")
 
+@app.route("/scatterplot")
+def scatterplot():
+    return render_template("scatterplot.html")
+
 @app.route("/threatened_species")
 def get_otu_ids():
     # defining metatdata
