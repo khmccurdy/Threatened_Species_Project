@@ -61,10 +61,18 @@ function plotPoints(data){
       ).addTo(myMap);
 
       for (var i = 0; i < heatArray.length; i++){
-        var marker = L.marker([latitudeArray[i], longitudeArray[i]]).bindPopup("<h3>Country : " + countryArray[i] + "</h3>" + "<strong>Total: " + "</strong>" + "<strong>" + totalArray[i] + "</strong>");
+        var marker = L.marker([latitudeArray[i], longitudeArray[i]])
+          .bindPopup(`<h3>Country: ${countryArray[i]}</h3>
+          <b>Total: ${totalArray[i]}</b>`);
+
         var icon = marker.options.icon;
+
         icon.options.iconSize = [12, 20];
+        icon.options.iconAnchor = [6,10];
+        icon.options.shadowSize = [20, 20];
+        icon.options.shadowAnchor = [5,10];
+
         marker.setIcon(icon).addTo(myMap);
-        }
+      }
 
 }
