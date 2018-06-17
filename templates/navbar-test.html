@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Threatened Species</title>
     <!-- D3 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
     <!-- Fusion Chart -->
@@ -20,12 +20,10 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <!-- Config vars - Replace w/ Heroku configs! -->
     <script src="{{ url_for('static',filename='js/config.js') }}"></script>
-    <!-- <link href="style.css" rel="stylesheet"> -->
+    <!-- Main styleshet -->
     <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}" />
-    <style>
-        
-    </style>
     <script>
+        // Declare 'static' path and colors
         const static = "{{ url_for('static',filename='') }}"
         const colorPalette = {
             red:'#ff9049',
@@ -61,7 +59,7 @@
     <div id ="map" class="graph-div"></div>
     <script src="{{ url_for('static',filename='js/heatmap.js') }}"></script>
     <!-- Line graph -->
-    <div id="chart-container" class="graph-div">FusionCharts will render here</div>
+    <div id="chart-container" class="graph-div"><p class="article">Loading FusionChart...</p></div>
     <script src="{{ url_for('static',filename='js/fusioncharts.js') }}"></script>
     <!-- Scatterplot -->
     <div id ="scatterplot" class="graph-div" style="margin:auto"></div>
@@ -69,7 +67,54 @@
     <script src="{{ url_for('static',filename='js/scatter.js') }}"></script>
     <!-- Summary -->
     <div id="summary" class="graph-div article">
-        <p>Good mornin fine people!</p>
+        <!-- <p>Good mornin fine people!</p> -->
+        <h1>Our Findings</h1>
+
+        <h2>1. Stacked Line Chart</h2>
+        <p>The International Union for Conservation of Nature (IUCN) collects valuable research 
+            from around the world to provide and continually improve information on endangered species. 
+            Each category on The IUCN Red List notes the reasons for the change recorded, 
+            which allows us to quickly identify species that are genuinely improving or deteriorating in status. 
+            Plant species are moving towards increased extinction risk most rapidly, while vertebrates are the second most threatened group. 
+            We see from the graph that the least affected group is of fungi and protists. 
+            This may be because fewer studies on those species are performed in general,
+            as there is no data available for these species in the records until 2002.
+        </p>
+
+        <h2>2. Heatmap</h2>
+        <p>Direct threats to species are the proximate human activities and processes that have impacted, 
+            are impacting, or may impact the status of the taxon being assessed (e.g., unsustainable fishing or logging).
+            <!-- # Redundant? #  Direct threats are synonymous with sources of stress and proximate pressures.  -->
+            Threats can be past (historical, unlikely to return; or historical, likely to return), 
+            ongoing, and/or likely to occur in the future. 
+            The present heatmap show the regions with most number of threatened species. 
+            Ecuador is a hotspot for species endangerment, with by far the highest number of 
+            threatened species due to its large number of endangered plants.
+            Following closely in rank are India, Madagascar and Tanzania.
+        </p>
+
+        <h2>3. Scatter Plot</h2>
+        <p>Reserve networks figures prominently claim conservation strategies that aim to reduce extinction rates. 
+            We test this claim by plotting the protected areas and deforestation against the number of species at risk in 208 countries. 
+            We compared numbers of threatened mammals, birds, higher plants and fungi species at risk included in existing countries to with
+            the percentage of protected reserves and the amount of annual deforestation within the country.
+            We indeed saw that some of the countries with more threatened species, like New Caledonia and Slovenia,
+            did have a significant amount of conserved area and lower amount of deforestation. 
+            However some countries like US and Australia, which have high numbers of threatened species,
+            have a lesser protected area. Overall, the correlation between conservation efforts 
+            and endangerment levels is unclear, likely due to the negative-feedback-loop nature
+            of conservation versus endangerment.
+            <!-- # Getting off-topic / Too much editorializing? # Reserves play a useful role in conserving endangered species that occur within them, 
+            reducing extinction rates in a region with much of the world’s remaining wilderness will require 
+            integrating conservation strategies with agricultural and urban land-use plans outside formally protected areas.  -->
+        </p>
+
+        <h2>Final Conclusion</h2>
+        <!-- Choose your adventure below: -->
+        <!-- <p>The main threats are no longer present, or conservation measures (e.g., reintroduction, habitat protection or restoration, legal protection, harvest management, etc.) have successfully improved the status of the species enough to downlist it to a lower category of threat.
+            </p>
+            <p>The main threats have continued unabated, have increased, or new threats have developed causing the status of the species to deteriorate enough to uplist it to a higher category of threat. 
+            </p>-->
     </div>
 
     <script>

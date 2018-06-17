@@ -24,9 +24,11 @@ var menu = {
         iconLink: "epa",
         colors: [colorPalette.green,colorPalette.dark_green,false],
         graphID: "#scatterplot",
-        label: "Protected Land"
+        label: "Conservation"
     },
     summary: {
+        iconLink: "writing",
+        iconScale: 0.25,
         graphID: "#summary", 
         colors: [colorPalette.orange,colorPalette.dark_orange,false],
         label: "Summary",

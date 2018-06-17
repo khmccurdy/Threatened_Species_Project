@@ -2,8 +2,8 @@ FusionCharts.ready(function () {
   var salesChart = new FusionCharts({
       type: 'MSArea',
       renderAt: 'chart-container',
-      width: '600',
-      height: '400',
+      width: '98%',
+      height: '80%',
       dataFormat: 'json',
       dataSource: {
         "chart": {
