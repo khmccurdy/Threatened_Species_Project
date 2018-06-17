@@ -26,8 +26,8 @@ fetch('/threatened_species')
     plotPoints(data)
   }); // then
 
-
-var mapbox = 'https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZHlsYnVyZ2VyIiwiYSI6ImNqaHNkZXpyYTAxdDAzcXJ6dzA3NHR5dXMifQ.oZt5CGSYffy4dZqIFSQciQ'
+// Never leave the API token visible in the repo!
+var mapbox = `https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=${mapboxToken}`
 
 var myMap = L.map('map', {
     // center: [37.7749, -122.4194],
@@ -48,11 +48,9 @@ function plotPoints(data){
 
       data.forEach(function (d,i) {
           heatArray[i].push(+d.Total*heatMultiplier)
-
       });
 
       console.log(data[0]);
-
 
       var heat = L.heatLayer(heatArray, {
               radius: 25,

@@ -13,38 +13,17 @@
     <!-- Leaflet and heatmap extension -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
-    <script type="text/javascript" src="static/js/leaflet-heat.js"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/leaflet-heat.js') }}"></script>
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!-- Plotly -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <!-- Config vars - Replace w/ Heroku configs! -->
-    <script src="static/js/config.js"></script>
+    <script src="{{ url_for('static',filename='js/config.js') }}"></script>
     <!-- <link href="style.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}" />
     <style>
-        .menu-icon-text {
-            text-align: center;
-            font-size: 12pt;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        }
-        #navbar{
-            background: #e0e0db;
-            /* box-shadow: 0px 5px rgba(0,0,0,0.3); */
-        }
-        #nav-svg{
-            background: #f9f9f4;
-            blah: #7cbdf1;
-        }
-        .xLabelBtn {
-            font-size: 10pt;
-        }
-        .article{
-            padding-top: 30pt;
-            padding-left: 50pt;
-            padding-right: 50pt;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-        }
+        
     </style>
     <script>
         const static = "{{ url_for('static',filename='') }}"
@@ -60,7 +39,7 @@
             dark_green:'#6fb104',
         }
     </script>
-    <link href="static/css/map-div.css" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/map-div.css') }}" rel="stylesheet">
 </head>
 <body>
     <nav>
@@ -71,7 +50,7 @@
                         <!-- top-level buttons go here -->
                     </g>
                     <g id="sub-buttons">
-                        <!-- second-level buttons go here -->
+                        <!-- second-level buttons go here (unused) -->
                     </g>
                 </g>
             </svg>
@@ -86,15 +65,19 @@
     <script src="{{ url_for('static',filename='js/fusioncharts.js') }}"></script>
     <!-- Scatterplot -->
     <div id ="scatterplot" class="graph-div" style="margin:auto"></div>
-    <!-- <div id ="3d"></div> -->
+            <!-- <div id ="3d"></div> -->
     <script src="{{ url_for('static',filename='js/scatter.js') }}"></script>
+    <!-- Summary -->
+    <div id="summary" class="graph-div article">
+        <p>Good mornin fine people!</p>
+    </div>
+
     <script>
+        // Hide all graph divs except #map
         d3.selectAll(".graph-div").style("display","none")
         d3.select("#map").style("display","block")
         console.log(window.innerWidth)
     </script>
-    <div id="summary" class="graph-div article">
-        <p>Good mornin fine people!</p>
-    </div>
+
 </body>
 </html>

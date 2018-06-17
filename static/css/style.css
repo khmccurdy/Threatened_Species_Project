@@ -1,0 +1,21 @@
+.menu-icon-text {
+    text-align: center;
+    font-size: 12pt;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+#navbar{
+    background: #e0e0db;
+    /* box-shadow: 0px 5px rgba(0,0,0,0.3); */
+}
+#nav-svg{
+    background: #f9f9f4;
+}
+.xLabelBtn {
+    font-size: 10pt;
+}
+.article {
+    padding-top: 30pt;
+    padding-left: 50pt;
+    padding-right: 50pt;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}

@@ -48,6 +48,7 @@ var $subButtons = $svg.select("#sub-buttons");
 
 var totalIcons = Object.keys(menu).length;
 
+var plotlyNeedsScaling = false;
 // Load top buttons
 loadMainButtons();
 
@@ -56,16 +57,12 @@ function loadMainButtons(){
     var xIndex = 0;
     // Define y position
     let yMid = navHeight * 0.4;
-    // let yMid = navHeight/2;
-    // let yTop = navHeight/3;
-    // let yLow = 2*navHeight/3;
 
     $topButtons.attr("transform", `translate(0 ${yMid})`)
     // Loop through top-level menu items
     for (var option in menu){
         let mo = menu[option];
         // calculate x position so that icons are evenly spaced
-        // @Volatile - menu Object may be unordered
         let xPos = navWidth/(totalIcons+1)*(xIndex+1);
         let spacing = navWidth/(totalIcons+1)
 
@@ -103,18 +100,14 @@ function loadMainButtons(){
             .attr("stroke-width", 0)
             .attr("text-anchor", "middle")
             .classed("menu-icon-text", true)
-        // Allows text wrapping on small screens, but more troublesome:
-        // $button.append("foreignObject")
-        //     .attr("width", spacing)
-        //     .attr("height", 80)
-        //     .attr("x", -spacing/2)
-        //     .attr("y", iconSize*0.6)
-        //     .classed("menu-icon-text", true)
-        //     .html(`<p style="margin:0px">${mo.label}</p>`)
 
         $button.on("click", function() {
             d3.selectAll(".graph-div").style("display","none")
             d3.select(mo.graphID).style("display","block")
+
+            if (mo.graphID=="#scatterplot" && plotlyNeedsScaling){
+                Plotly.relayout("scatterplot",{width: window.innerWidth*0.98});
+            }
 
             // if (mo.children){
             //     $topButtons.transition().duration(trDuration)
@@ -146,11 +139,19 @@ function loadMainButtons(){
     }
 }
 
+// Window resizing ()
 d3.select(window).on("resize", ()=>{
     navWidth = parseInt($svg.style("width"));
-    $topButtons.selectAll("g").data(d3.range(totalIcons).map(i=>navWidth/(totalIcons+1)*(i+1)))
-        .attr("transform", d=>`translate(${d} 0)`)
+    var $iconsResizing = $topButtons.selectAll("g").data(d3.range(totalIcons).map(i=>navWidth/(totalIcons+1)*(i+1)));
+
+    $iconsResizing.attr("transform", d=>`translate(${d} 0)`)
         .attr("default-transform", d=>`translate(${d} 0)`)
-        .transition().duration(1).on("end",()=>{Plotly.relayout("scatterplot",{width: window.innerWidth*0.98})})
-    
+    // Resize Plotly if it's visible
+    if (d3.select("#scatterplot").style("display")!="none"){
+        plotlyNeedsScaling = false;
+        // $iconsResizing.transition().duration(1).on("end",()=>{})
+        Plotly.relayout("scatterplot",{width: window.innerWidth*0.98})
+    } else {
+        plotlyNeedsScaling = true;
+    }
 })
