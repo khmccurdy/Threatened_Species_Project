@@ -2,13 +2,17 @@
 body {
   padding: 0;
   margin: 0;
+  height: calc(100% - 110px); /* minus navbar incl. border */
 }
 
 /* set map, body, and html to 100% of the screen size */
 #map,
-body,
 html {
   height: 100%;
+}
+
+header.navbar {
+    margin-bottom: 0; /* remove bottom margin */
 }
 
 /* .legend {
