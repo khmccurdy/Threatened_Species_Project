@@ -54,7 +54,13 @@ function plotPoints(data){
 
       var heat = L.heatLayer(heatArray, {
               radius: 25,
-              blur: 15
+              blur: 25,
+              minOpacity: 0.3,
+              gradient: {
+           0.0: 'green',
+           0.4: 'yellow',
+           0.9: 'red'
+            }
           }
       ).addTo(myMap);
 
