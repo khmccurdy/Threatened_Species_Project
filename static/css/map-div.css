@@ -6,19 +6,8 @@ body {
 }
 
 /* set map, body, and html to 100% of the screen size */
-<<<<<<< HEAD
-#map,
-html {
-  height: 100%;
-=======
-
 html, #map {
     height: 100%;
-}
-
-header.navbar {
-    margin-bottom: 0; /* remove bottom margin */
->>>>>>> shjung
 }
 
 header.navbar {
