@@ -3,7 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="175a15ee-8782-433a-933b-dcc3f8bdaf0d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/static/css/map-div.css" afterPath="$PROJECT_DIR$/static/css/map-div.css" />
+=======
+      <change beforePath="$PROJECT_DIR$/static/js/heatmap.js" afterPath="$PROJECT_DIR$/static/js/heatmap.js" />
+>>>>>>> shjung
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
