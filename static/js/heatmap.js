@@ -57,9 +57,9 @@ function plotPoints(data){
               blur: 25,
               minOpacity: 0.3,
               gradient: {
-              0.0: 'green',
+              0.0: '#00cc00',
               0.4: 'yellow',
-              0.9: 'red'
+              0.9: 'red',
             }
           }
       ).addTo(myMap);

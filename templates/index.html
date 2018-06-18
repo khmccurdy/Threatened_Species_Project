@@ -36,6 +36,11 @@
             dark_blue:'#5da2db',
             dark_green:'#6fb104',
         }
+        if (!mapboxToken) {
+            let response;
+            d3.text("/mapboxkey",(e,r)=>{response=r})
+            const mapboxToken = response;
+        }
     </script>
     <link href="{{ url_for('static',filename='css/map-div.css') }}" rel="stylesheet">
 </head>

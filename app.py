@@ -34,6 +34,10 @@ def fusionmap():
 def heatmap():
     return render_template("heatmap.html")
 
+@app.route("/mapboxkey")
+def mapboxkey():
+    return str(os.environ.get("MAPBOX_TOKEN"))
+
 @app.route("/scatterplot")
 def scatterplot():
     return render_template("scatterplot.html")
