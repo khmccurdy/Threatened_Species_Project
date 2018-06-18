@@ -2,9 +2,9 @@
 
 How many species are threatened?
 Species assessed as Critically Endangered (CR), Endangered (EN), or Vulnerable (VU) are referred to as "threatened" species.
-Our project is to examine the number of  threatened species in different countries through heat map.
-Our project would focus on seeing a trend between the Terrestrial protected areas(% of total land area and ) and the endangered species.
-A drop down list for looking at the differnet groups of endangeered animals and their scatter plot on geomap.
+Our project is to examine the number of  threatened species in different countries through a heat map.
+Our project would focus on seeing a trend between the Terrestrial protected areas(% of total land area) and the endangered species.
+A drop down list for looking at the different groups of endangered animals and their scatter plot on geomap.
 
 
 # A link to your dataset(s) and a screenshot of the metadata if it exists.
