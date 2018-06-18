@@ -145,22 +145,22 @@ d3.csv("static/data/deforestation_cleanup.csv", (error, response)=>{
             // console.log(xAxisSelect)
             switch (selector) {
                 case 0: // 0,0
-                newX=protectedLand90;
-                break;
-                case 1: // 0,1
                 newX=protectedLand14;
                 break;
-                case 2: // 1,0
-                newX=protectedMarine90;
+                case 1: // 0,1
+                newX=protectedLand90;
                 break;
-                case 3: // 1,1
+                case 2: // 1,0
                 newX=protectedMarine14;
                 break;
+                case 3: // 1,1
+                newX=protectedMarine90;
+                break;
                 case 4: // 2,0
-                newX=deforestation90s;
+                newX=deforestation00s;
                 break;
                 case 5: // 2,1
-                newX=deforestation00s;
+                newX=deforestation90s;
                 break;
                 default:
                 newX=protectedLand90;

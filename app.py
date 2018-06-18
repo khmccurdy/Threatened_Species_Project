@@ -23,7 +23,7 @@ db = SQLAlchemy(app)
 
 @app.route("/")
 def home():
-    return render_template("navbar-test.html")
+    return render_template("index.html")
     # return render_template("index.html")
 
 @app.route("/fusionmap")
