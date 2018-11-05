@@ -39,7 +39,10 @@
         try { mapboxToken }
         catch(err) {
             var mapboxToken;
-            d3.text("/mapboxkey",(e,r)=>{mapboxToken=r})
+            d3.text("/mapboxkey",(e,r)=>{
+                mapboxToken=r;
+                L.tileLayer(mapbox).addTo(myMap);
+            })
         }
     </script>
     <link href="{{ url_for('static',filename='css/map-div.css') }}" rel="stylesheet">
