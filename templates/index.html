@@ -38,9 +38,8 @@
         }
         try { mapboxToken }
         catch(err) {
-            let response;
-            d3.text("/mapboxkey",(e,r)=>{response=r})
-            const mapboxToken = response;
+            const mapboxToken;
+            d3.text("/mapboxkey",(e,r)=>{mapboxToken=r})
         }
     </script>
     <link href="{{ url_for('static',filename='css/map-div.css') }}" rel="stylesheet">
