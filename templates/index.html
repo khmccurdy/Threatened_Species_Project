@@ -38,7 +38,7 @@
         }
         try { mapboxToken }
         catch(err) {
-            const mapboxToken;
+            var mapboxToken;
             d3.text("/mapboxkey",(e,r)=>{mapboxToken=r})
         }
     </script>
