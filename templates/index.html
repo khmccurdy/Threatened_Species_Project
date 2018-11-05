@@ -36,7 +36,8 @@
             dark_blue:'#5da2db',
             dark_green:'#6fb104',
         }
-        if (!mapboxToken) {
+        try { mapboxToken }
+        catch(err) {
             let response;
             d3.text("/mapboxkey",(e,r)=>{response=r})
             const mapboxToken = response;
