@@ -39,6 +39,8 @@
         try { mapboxToken }
         catch(err) {
             var mapboxToken;
+        }
+        if (!mapboxToken){
             d3.text("/mapboxkey",(e,r)=>{
                 mapboxToken=r;
                 console.log(r);
