@@ -36,7 +36,7 @@ def heatmap():
 
 @app.route("/mapboxkey")
 def mapboxkey():
-    return f"var mapboxToken = '{str(os.environ.get("MAPBOX_TOKEN"))}';"
+    return f"var mapboxToken = '{str(os.environ.get('MAPBOX_TOKEN'))}';"
 
 @app.route("/scatterplot")
 def scatterplot():
